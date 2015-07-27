@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <title>Sitescope Alert Log Viewer</title>
+    {% for s in base_css %}
+    <link href={{ url_for('static', filename=s) }} rel="stylesheet" media="screen">
+    {% endfor %}
+  </head>
+  <body>
+    {% for s in base_scripts %}
+    <script src={{ url_for('static', filename=s) }}></script>
+    {% endfor %}
+
+    <div class="container">
+    <a href="/Sitescope001" class="btn btn-primary" role="button">Sitescope001</a>
+    <a href="/Sitescope002" class="btn btn-primary" role="button">Sitescope002</a>
+    <a href="/Sitescope003" class="btn btn-primary" role="button">Sitescope003</a>
+    <a href="/Sitescope004" class="btn btn-primary" role="button">Sitescope004</a>
+    <a href="/nnm" class="btn btn-primary" role="button">NNM</a>
+    <a class="btn btn-warning" role="button" id="refresh">Atualizar</a>
+    <img id="loading_gif" src={{ url_for('static', filename='img/loading.gif')}} height="30" width="30" style="display: none">
+    </div>
+
+    <div id="filter-bar"> </div>
+     <div class="container table-responsive">
+        <h1>Alertas {{sitescope}}</h1>
+        <table id="table"
+               data-toggle="table"
+               data-url="{{sitescope}}/get_data"
+               data-height="600"
+               data-side-pagination="server"
+               data-pagination="true"
+               data-page-list="[10, 20, 50, 100, 200, 500]"
+               data-search="true"
+               data-toolbar="#filter-bar"
+               data-show-toggle="true"
+               data-show-columns="true"
+               data-show-filter="true"
+               data-toggle="table">
+            <thead>
+            <tr>
+                <th data-field="hora">Hora</th>
+                <th data-field="alert-monitor">Monitor</th>
+                <th data-field="alert-name">Alerta</th>
+                <th data-field="alert-type">Tipo</th>
+                <!--<th data-field="alert-monitor-id">ID</th>-->
+
+
+            </tr>
+            </thead>
+        </table>
+    </div>
+  </body>
+<footer>
+  <p>Criado por: David Lopes - <a href="mailto:davidribeirolopes@gmail.com">
+  davidribeirolopes@gmail.com</a></p>
+</footer>
+</html>

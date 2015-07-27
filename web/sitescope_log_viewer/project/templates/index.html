@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <title>Sitescope Alert Log Viewer</title>
+    {% for s in base_css %}
+    <link href={{ url_for('static', filename=s) }} rel="stylesheet" media="screen">
+    {% endfor %}
+  </head>
+  <body>
+    {% for s in base_scripts %}
+    <script src={{ url_for('static', filename=s) }}></script>
+    {% endfor %}
+    <h1>Sitescope Alert Viewer</h1>
+
+
+    {% for sis in sitescopes %}
+        <li><a href="/{{sis}}">{{sis}}</li>
+    {% endfor %}
+
+  </body>
+</html>
