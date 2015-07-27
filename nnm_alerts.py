@@ -1,8 +1,5 @@
-import re
 import json
 import os
-import time
-from datetime import datetime
 
 
 def del_dups(seq):
@@ -61,9 +58,7 @@ def popula_alertas(sitescope):
                         estrutura[7]: parametros[7].replace('Command: ', '').replace('com.hp.nms.incident.family.', ''),
                     })
             if(linha[:10]) == 'Started at' and captura_data:
-                print (num_alertas, linha)
                 dic_alertas[num_alertas - 1]['hora'] = linha.split(' at ')[1]
-                   # print (num_alertas)
                 captura_data = False
 
 
@@ -92,7 +87,7 @@ def gerar_arquivo_alertas(dic_alertas, sitescope):
             #print (valores.split(','))
            # print(len(valores.split(',')))
             if len(valores.split(',')) !=10:
-                print (valor)
+                pass
             else:
                 saida.write(valores[:-1]+'\n')
 
@@ -106,7 +101,7 @@ def obter_monitores_arquivo(sitescope):
 def ordenar_monitores(lista_monitores, campo):
     if 'quantidade' in campo.lower():
         return lista_monitores
-
+    ordenado = []
     if 'nome' in campo.lower():
         arqs = []
         for entrada in lista_monitores:
